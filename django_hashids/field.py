@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.core.exceptions import FieldError
-from django.db.models import Field
+from django.db.models import TextField
 from django.utils.functional import cached_property
 from hashids import Hashids
 
 from .exceptions import ConfigError, RealFieldDoesNotExistError
 
 
-class HashidsField(Field):
+class HashidsField(TextField):
     concrete = False
     allowed_lookups = ("exact", "iexact", "in", "gt", "gte", "lt", "lte", "isnull")
     # these should never change, even when Hashids updates
@@ -22,7 +22,7 @@ class HashidsField(Field):
         salt=None,
         alphabet=None,
         min_length=None,
-        **kwargs
+        **kwargs,
     ):
         kwargs.pop("editable", None)
         super().__init__(*args, editable=False, **kwargs)
