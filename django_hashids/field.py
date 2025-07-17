@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.exceptions import FieldError
-from django.db.models import TextField
+from django.db.models import TextField, Field
 from django.utils.functional import cached_property
 from hashids import Hashids
 
